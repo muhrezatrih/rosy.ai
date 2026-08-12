@@ -1,0 +1,119 @@
+{
+	"info": {
+		"_postman_id": "b12f4580-87a1-43e4-a12b-345091bf1234",
+		"name": "Invest Buddy APIs",
+		"description": "Postman collection for testing Invest Buddy Gemini AI endpoints: /generate-text, /generate-from-image, and /generate-from-document.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:5001",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "1. Generate Text",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"prompt\": \"Berikan analisis prinsip dasar investasi diversifikasi portofolio untuk pemula.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/generate-text",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"generate-text"
+					]
+				},
+				"description": "Endpoint for text generation using prompt."
+			},
+			"response": []
+		},
+		{
+			"name": "2. Generate from Image",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"description": "Select an image file of a stock chart or financial diagram (e.g. .jpg, .png)"
+						},
+						{
+							"key": "prompt",
+							"value": "Analisis grafik saham atau tren keuangan pada gambar ini.",
+							"type": "text",
+							"description": "Prompt for image analysis"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/generate-from-image",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"generate-from-image"
+					]
+				},
+				"description": "Endpoint for analyzing uploaded image files."
+			},
+			"response": []
+		},
+		{
+			"name": "3. Generate from Document",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "document",
+							"type": "file",
+							"src": [],
+							"description": "Select a financial report or investment document file (e.g. .pdf, .txt)"
+						},
+						{
+							"key": "prompt",
+							"value": "Tolong buat ringkasan laporan keuangan dan poin penting investasi dari dokumen ini.",
+							"type": "text",
+							"description": "Prompt for document summary"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/generate-from-document",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"generate-from-document"
+					]
+				},
+				"description": "Endpoint for analyzing or summarizing uploaded investment document files."
+			},
+			"response": []
+		}
+	]
+}
