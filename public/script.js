@@ -329,9 +329,8 @@ document.addEventListener('DOMContentLoaded', () => {
       escCard.style.border = '1px solid #ffd591';
       escCard.innerHTML = `
         <div style="font-weight: bold; color: #ad4e00; margin-bottom: 6px; font-size: 13px;">🚨 Perlu Rembuk Langsung Sama Ibu Ros</div>
-        <p style="font-size: 12px; color: #595959; margin-bottom: 8px;">Keputusan ini perlu persetujuan langsung dari Ibu Ros.</p>
-        <a href="${escalation.whatsappUrl || 'https://wa.me/6281266641431'}" target="_blank" style="display: inline-block; padding: 6px 14px; background: #25D366; color: white; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: bold;">
-          💬 Chat WhatsApp Ibu Ros (+6281266641431)
+        <a href="${escalation.whatsappUrl || 'https://wa.me/6281234567890'}" target="_blank" style="display: inline-block; padding: 6px 14px; background: #25D366; color: white; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: bold;">
+          💬 Chat WhatsApp Ibu Ros
         </a>
       `;
       content.appendChild(escCard);

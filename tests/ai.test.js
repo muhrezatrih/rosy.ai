@@ -32,13 +32,13 @@ describe('AI API Endpoints', () => {
       expect(response.body.success).toBe(true);
       expect(response.body.result).toContain('Kamar Kecil 600rb');
       expect(response.body.escalation).toBeDefined();
-      expect(response.body.escalation.ownerNumber).toBe('+6281266641431');
+      expect(response.body.escalation.ownerNumber).toBeDefined();
       expect(geminiService.generateText).toHaveBeenCalledWith('Berapa harga kamar kecil dan kamar besar?');
     });
 
     it('should flag escalation as required when tenant asks for delayed payment / special decisions', async () => {
       geminiService.generateText.mockResolvedValue(
-        'Untuk penundaan pembayaran sewa setelah 15 hari, saya tidak memiliki wewenang ya Kak. Silakan hubungi langsung Ibu Ros di WhatsApp +6281266641431.'
+        'Untuk penundaan pembayaran sewa setelah 15 hari, saya tidak memiliki wewenang ya Kak. Silakan hubungi langsung Ibu Ros di WhatsApp.'
       );
 
       const response = await request(app)
@@ -48,8 +48,8 @@ describe('AI API Endpoints', () => {
       expect(response.status).toBe(200);
       expect(response.body.success).toBe(true);
       expect(response.body.escalation.required).toBe(true);
-      expect(response.body.escalation.ownerNumber).toBe('+6281266641431');
-      expect(response.body.escalation.whatsappUrl).toContain('6281266641431');
+      expect(response.body.escalation.ownerNumber).toBeDefined();
+      expect(response.body.escalation.whatsappUrl).toContain('https://wa.me/');
     });
 
   });

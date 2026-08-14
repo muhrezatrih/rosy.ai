@@ -12,7 +12,7 @@
       "priceMonthly": 600000,
       "priceFormatted": "Rp 600.000",
       "totalUnits": 5,
-      "availableUnits": 5,
+      "availableUnits": 2,
       "condition": "Kosongan (Unfurnished)",
       "size": "Ukuran Kompak",
       "description": "Kamar kosongan ukuran standar & kompak, pas dan leluasa untuk ditata sendiri.",
@@ -33,7 +33,7 @@
       "priceMonthly": 700000,
       "priceFormatted": "Rp 700.000",
       "totalUnits": 6,
-      "availableUnits": 6,
+      "availableUnits": 1,
       "condition": "Kosongan (Unfurnished)",
       "size": "Ukuran Lebih Luas",
       "description": "Kamar kosongan ukuran lebih luas & lega, ruang gerak leluasa untuk perabot bawaan.",
@@ -74,8 +74,8 @@
       "number": "101",
       "categoryId": "kamar-kecil",
       "name": "Kamar 101",
-      "status": "Kosong",
-      "tenantName": null
+      "status": "Terisi",
+      "tenantName": "Rian"
     },
     {
       "number": "102",
@@ -88,8 +88,8 @@
       "number": "103",
       "categoryId": "kamar-kecil",
       "name": "Kamar 103",
-      "status": "Kosong",
-      "tenantName": null
+      "status": "Terisi",
+      "tenantName": "Bima"
     },
     {
       "number": "104",
@@ -102,29 +102,29 @@
       "number": "105",
       "categoryId": "kamar-kecil",
       "name": "Kamar 105",
-      "status": "Kosong",
-      "tenantName": null
+      "status": "Terisi",
+      "tenantName": "Dimas"
     },
     {
       "number": "201",
       "categoryId": "kamar-besar",
       "name": "Kamar 201",
-      "status": "Kosong",
-      "tenantName": null
+      "status": "Terisi",
+      "tenantName": "Fajar"
     },
     {
       "number": "202",
       "categoryId": "kamar-besar",
       "name": "Kamar 202",
-      "status": "Kosong",
-      "tenantName": null
+      "status": "Terisi",
+      "tenantName": "Aldi"
     },
     {
       "number": "203",
       "categoryId": "kamar-besar",
       "name": "Kamar 203",
-      "status": "Kosong",
-      "tenantName": null
+      "status": "Terisi",
+      "tenantName": "Reza"
     },
     {
       "number": "204",
@@ -137,15 +137,15 @@
       "number": "205",
       "categoryId": "kamar-besar",
       "name": "Kamar 205",
-      "status": "Kosong",
-      "tenantName": null
+      "status": "Terisi",
+      "tenantName": "Yusuf"
     },
     {
       "number": "206",
       "categoryId": "kamar-besar",
       "name": "Kamar 206",
-      "status": "Kosong",
-      "tenantName": null
+      "status": "Terisi",
+      "tenantName": "Kevin"
     },
     {
       "number": "PV-01",
@@ -155,5 +155,78 @@
       "tenantName": null
     }
   ],
-  "tenants": []
+  "tenants": [
+    {
+      "id": "t-1",
+      "name": "Rian",
+      "roomNumber": "101",
+      "categoryId": "kamar-kecil",
+      "checkInDate": "2026-08-01",
+      "nextDueDate": "2026-09-01",
+      "phone": "08123456789"
+    },
+    {
+      "id": "t-2",
+      "name": "Bima",
+      "roomNumber": "103",
+      "categoryId": "kamar-kecil",
+      "checkInDate": "2026-08-10",
+      "nextDueDate": "2026-09-10",
+      "phone": "08129876543"
+    },
+    {
+      "id": "t-3",
+      "name": "Dimas",
+      "roomNumber": "105",
+      "categoryId": "kamar-kecil",
+      "checkInDate": "2026-08-14",
+      "nextDueDate": "2026-09-14",
+      "phone": "08137788990"
+    },
+    {
+      "id": "t-4",
+      "name": "Fajar",
+      "roomNumber": "201",
+      "categoryId": "kamar-besar",
+      "checkInDate": "2026-07-20",
+      "nextDueDate": "2026-08-20",
+      "phone": "08521122334"
+    },
+    {
+      "id": "t-5",
+      "name": "Aldi",
+      "roomNumber": "202",
+      "categoryId": "kamar-besar",
+      "checkInDate": "2026-08-05",
+      "nextDueDate": "2026-09-05",
+      "phone": "08534455667"
+    },
+    {
+      "id": "t-6",
+      "name": "Reza",
+      "roomNumber": "203",
+      "categoryId": "kamar-besar",
+      "checkInDate": "2026-08-12",
+      "nextDueDate": "2026-09-12",
+      "phone": "08781199228"
+    },
+    {
+      "id": "t-7",
+      "name": "Yusuf",
+      "roomNumber": "205",
+      "categoryId": "kamar-besar",
+      "checkInDate": "2026-07-15",
+      "nextDueDate": "2026-08-15",
+      "phone": "08198877665"
+    },
+    {
+      "id": "t-8",
+      "name": "Kevin",
+      "roomNumber": "206",
+      "categoryId": "kamar-besar",
+      "checkInDate": "2026-08-03",
+      "nextDueDate": "2026-09-03",
+      "phone": "08215566778"
+    }
+  ]
 }

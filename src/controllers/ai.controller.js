@@ -6,7 +6,7 @@ const { OWNER_WHATSAPP_NUMBER, OWNER_WHATSAPP_DIGITS } = require('../config/kosP
  */
 function detectEscalation(prompt, responseText) {
   const isEscalation =
-    responseText.includes('81266641431') ||
+    (OWNER_WHATSAPP_DIGITS && responseText.includes(OWNER_WHATSAPP_DIGITS)) ||
     responseText.toLowerCase().includes('pemilik') ||
     responseText.toLowerCase().includes('wewenang') ||
     /(telat|nunggak|cicil|keringanan|nego|diskon|izin khusus|kebijakan|darurat)/i.test(prompt || '');
