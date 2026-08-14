@@ -45,6 +45,7 @@
 html {
   background-color: var(--background);
   min-height: 100%;
+  overscroll-behavior: none;
 }
 
 body {
@@ -56,6 +57,7 @@ body {
   margin: 0;
   padding: 0;
   touch-action: manipulation;
+  overscroll-behavior: none;
 }
 
 /* Prevent auto-zooming on focus for iOS Safari & mobile browsers */

@@ -134,6 +134,36 @@ export default function KostApp() {
     return () => clearInterval(interval);
   }, []);
 
+  // Handle mobile virtual keyboard: prevent white gap on iOS Safari/Chrome
+  useEffect(() => {
+    const vv = window.visualViewport;
+    if (!vv) return;
+
+    const handleResize = () => {
+      // Calculate the offset between the full window height and the visual viewport
+      // This offset equals the virtual keyboard height
+      const offsetBottom = window.innerHeight - vv.height - vv.offsetTop;
+      document.documentElement.style.setProperty(
+        '--keyboard-offset',
+        `${Math.max(0, offsetBottom)}px`
+      );
+      // On iOS, scrollIntoView the active element to avoid white gap
+      if (offsetBottom > 0 && document.activeElement) {
+        requestAnimationFrame(() => {
+          document.activeElement?.scrollIntoView({ block: 'nearest', behavior: 'instant' });
+        });
+      }
+    };
+
+    vv.addEventListener('resize', handleResize);
+    vv.addEventListener('scroll', handleResize);
+    return () => {
+      vv.removeEventListener('resize', handleResize);
+      vv.removeEventListener('scroll', handleResize);
+      document.documentElement.style.removeProperty('--keyboard-offset');
+    };
+  }, []);
+
   // Handle file selection
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

@@ -13,6 +13,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
+  interactiveWidget: 'resizes-content',
 };
 
 export const metadata: Metadata = {
@@ -40,7 +41,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={jakartaSans.variable}>
+    <html lang="id" className={`${jakartaSans.variable} bg-[#faf8f5] dark:bg-[#121110]`}>
       <head>
         <link rel="icon" href="/icon.png" sizes="any" />
       </head>
