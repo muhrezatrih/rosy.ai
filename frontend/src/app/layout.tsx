@@ -44,7 +44,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/icon.png" sizes="any" />
       </head>
-      <body className="font-sans antialiased bg-[#faf8f5] dark:bg-[#121110] text-zinc-900 dark:text-zinc-100 flex flex-col min-h-screen">
+      <body className="font-sans antialiased bg-[#faf8f5] dark:bg-[#121110] text-zinc-900 dark:text-zinc-100 flex flex-col min-h-dvh">
         {children}
       </body>
     </html>

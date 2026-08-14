@@ -42,11 +42,17 @@
   }
 }
 
+html {
+  background-color: var(--background);
+  min-height: 100%;
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-  min-height: 100vh;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
   margin: 0;
   padding: 0;
   touch-action: manipulation;
