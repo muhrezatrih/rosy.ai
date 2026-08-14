@@ -8,7 +8,7 @@ export const FloatingWhatsApp: React.FC = () => {
   return (
     <aside
       aria-label="Kontak Cepat WhatsApp Ibu Ros"
-      className="fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center group pointer-events-auto"
+      className="hidden sm:flex fixed bottom-6 right-6 z-40 items-center group pointer-events-auto"
     >
       <a
         href={OWNER_CONTACT.whatsappUrl}
