@@ -12,7 +12,7 @@
       "priceMonthly": 600000,
       "priceFormatted": "Rp 600.000",
       "totalUnits": 5,
-      "availableUnits": 2,
+      "availableUnits": 1,
       "condition": "Kosongan (Unfurnished)",
       "size": "Ukuran Kompak",
       "description": "Kamar kosongan ukuran standar & kompak, pas dan leluasa untuk ditata sendiri.",
@@ -81,8 +81,8 @@
       "number": "102",
       "categoryId": "kamar-kecil",
       "name": "Kamar 102",
-      "status": "Kosong",
-      "tenantName": null
+      "status": "Terisi",
+      "tenantName": "Nurma"
     },
     {
       "number": "103",
@@ -227,6 +227,15 @@
       "checkInDate": "2026-08-03",
       "nextDueDate": "2026-09-03",
       "phone": "08215566778"
+    },
+    {
+      "id": "t-1786719893919",
+      "name": "Nurma",
+      "roomNumber": "102",
+      "categoryId": "kamar-kecil",
+      "checkInDate": "2026-08-14",
+      "nextDueDate": "2026-09-14",
+      "phone": "087776135039"
     }
   ]
 }

@@ -459,7 +459,7 @@ export default function KostApp() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
                 rows={1}
-                placeholder="Tanyakan tipe kamar kosongan (Kamar Kecil/Besar/Paviliun), aturan sewa, atau lampirkan foto..."
+                placeholder="Tanya seputar kos"
                 className="w-full max-h-32 py-2 px-1 text-xs sm:text-sm bg-transparent border-0 focus:ring-0 focus:outline-hidden resize-none text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500"
               />
             </div>
