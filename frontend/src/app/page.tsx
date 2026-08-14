@@ -358,9 +358,6 @@ export default function KostApp() {
                   <span className="text-zinc-500 dark:text-zinc-400 text-xs hidden sm:inline">
                     Tiban Indah, Sekupang
                   </span>
-                  <span className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 border border-zinc-200/80 dark:border-zinc-700/80">
-                    Kamar Kosongan
-                  </span>
                   <span className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/40">
                     Free Listrik & Air
                   </span>
