@@ -49,6 +49,16 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
+  touch-action: manipulation;
+}
+
+/* Prevent auto-zooming on focus for iOS Safari & mobile browsers */
+@media screen and (max-width: 768px) {
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
 }
 
 /* Custom scrollbar */
