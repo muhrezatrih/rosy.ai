@@ -1,7 +1,7 @@
 {
-  "name": "invest-buddy",
+  "name": "rosy-ai",
   "version": "1.0.0",
-  "description": "Gemini AI API Express Server",
+  "description": "Rosy — AI Virtual Concierge & Room Management Platform for Kost Ibu Ros",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",

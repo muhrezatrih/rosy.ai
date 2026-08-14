@@ -14,7 +14,7 @@ The system provides 24/7 conversational assistance for prospective and current t
 * **Multimodal Support**:
   * **Image Inspection**: Analyzes uploaded photos (e.g., proof of payment, maintenance/repair issues, ID cards).
   * **Document Summarization**: Reads PDF and text documents.
-* **WhatsApp Escalation Routing**: Automatically routes questions needing direct owner confirmation to the property owner's WhatsApp chat with a pre-filled message link.
+* **WhatsApp Escalation Routing**: Automatically routes questions needing direct owner confirmation to the owner's WhatsApp number (`+62 812-6664-1431`) with a pre-filled chat link.
 * **Chat History Persistence**: Chat sessions persist locally in `localStorage` across browser refreshes with an option to reset.
 
 ### 2. 🛏️ Live Room Inventory & Tenant Management

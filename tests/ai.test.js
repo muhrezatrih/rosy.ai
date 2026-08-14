@@ -32,13 +32,13 @@ describe('AI API Endpoints', () => {
       expect(response.body.success).toBe(true);
       expect(response.body.result).toContain('Kamar Kecil 600rb');
       expect(response.body.escalation).toBeDefined();
-      expect(response.body.escalation.ownerNumber).toBeDefined();
+      expect(response.body.escalation.ownerNumber).toBe('+6281266641431');
       expect(geminiService.generateText).toHaveBeenCalledWith('Berapa harga kamar kecil dan kamar besar?');
     });
 
     it('should flag escalation as required when tenant asks for delayed payment / special decisions', async () => {
       geminiService.generateText.mockResolvedValue(
-        'Untuk penundaan pembayaran sewa setelah 15 hari, saya tidak memiliki wewenang ya Kak. Silakan hubungi langsung Ibu Ros di WhatsApp.'
+        'Untuk penundaan pembayaran sewa setelah 15 hari, saya tidak memiliki wewenang ya Kak. Silakan hubungi langsung Ibu Ros di WhatsApp +6281266641431.'
       );
 
       const response = await request(app)
@@ -48,8 +48,8 @@ describe('AI API Endpoints', () => {
       expect(response.status).toBe(200);
       expect(response.body.success).toBe(true);
       expect(response.body.escalation.required).toBe(true);
-      expect(response.body.escalation.ownerNumber).toBeDefined();
-      expect(response.body.escalation.whatsappUrl).toContain('https://wa.me/');
+      expect(response.body.escalation.ownerNumber).toBe('+6281266641431');
+      expect(response.body.escalation.whatsappUrl).toContain('6281266641431');
     });
 
   });
@@ -65,18 +65,18 @@ describe('AI API Endpoints', () => {
     });
 
     it('should process uploaded image file successfully', async () => {
-      geminiService.generateFromImage.mockResolvedValue('Hasil analisis grafik saham...');
+      geminiService.generateFromImage.mockResolvedValue('Bukti transfer pembayaran sewa kamar 101 telah diverifikasi.');
 
       const fakeImageBuffer = Buffer.from('fake-image-bytes');
 
       const response = await request(app)
         .post('/generate-from-image')
-        .attach('image', fakeImageBuffer, { filename: 'chart.png', contentType: 'image/png' })
-        .field('prompt', 'Analisis grafik saham ini');
+        .attach('image', fakeImageBuffer, { filename: 'transfer.png', contentType: 'image/png' })
+        .field('prompt', 'Verifikasi bukti transfer sewa kos ini');
 
       expect(response.status).toBe(200);
       expect(response.body.success).toBe(true);
-      expect(response.body.result).toBe('Hasil analisis grafik saham...');
+      expect(response.body.result).toBe('Bukti transfer pembayaran sewa kamar 101 telah diverifikasi.');
     });
   });
 
@@ -91,18 +91,18 @@ describe('AI API Endpoints', () => {
     });
 
     it('should process uploaded document file successfully', async () => {
-      geminiService.generateFromDocument.mockResolvedValue('Ringkasan laporan keuangan...');
+      geminiService.generateFromDocument.mockResolvedValue('Ringkasan surat perjanjian sewa kos...');
 
       const fakeDocBuffer = Buffer.from('fake-pdf-content');
 
       const response = await request(app)
         .post('/generate-from-document')
-        .attach('document', fakeDocBuffer, { filename: 'report.pdf', contentType: 'application/pdf' })
-        .field('prompt', 'Ringkas laporan keuangan ini');
+        .attach('document', fakeDocBuffer, { filename: 'perjanjian_sewa.pdf', contentType: 'application/pdf' })
+        .field('prompt', 'Ringkas isi dokumen perjanjian sewa kos ini');
 
       expect(response.status).toBe(200);
       expect(response.body.success).toBe(true);
-      expect(response.body.result).toBe('Ringkasan laporan keuangan...');
+      expect(response.body.result).toBe('Ringkasan surat perjanjian sewa kos...');
     });
   });
 

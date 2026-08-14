@@ -1,8 +1,8 @@
 {
 	"info": {
 		"_postman_id": "b12f4580-87a1-43e4-a12b-345091bf1234",
-		"name": "Invest Buddy APIs",
-		"description": "Postman collection for testing Invest Buddy Gemini AI endpoints: /generate-text, /generate-from-image, and /generate-from-document.",
+		"name": "Rosy AI APIs",
+		"description": "Postman collection for testing Rosy AI Gemini AI endpoints and room inventory management APIs.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"variable": [
@@ -14,7 +14,25 @@
 	],
 	"item": [
 		{
-			"name": "1. Generate Text",
+			"name": "1. Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/health",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"health"
+					]
+				},
+				"description": "Service health check endpoint"
+			},
+			"response": []
+		},
+		{
+			"name": "2. Generate Text (Rosy AI Q&A)",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -25,7 +43,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"prompt\": \"Berikan analisis prinsip dasar investasi diversifikasi portofolio untuk pemula.\"\n}",
+					"raw": "{\n  \"prompt\": \"Berapa harga sewa kamar kecil dan kamar besar di Kost Ibu Ros?\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -41,12 +59,12 @@
 						"generate-text"
 					]
 				},
-				"description": "Endpoint for text generation using prompt."
+				"description": "Endpoint for Rosy AI text generation using dynamic kost context."
 			},
 			"response": []
 		},
 		{
-			"name": "2. Generate from Image",
+			"name": "3. Generate from Image (Bukti Transfer / Foto Kerusakan)",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -57,13 +75,13 @@
 							"key": "image",
 							"type": "file",
 							"src": [],
-							"description": "Select an image file of a stock chart or financial diagram (e.g. .jpg, .png)"
+							"description": "Select an image file (e.g. proof of payment or maintenance photo)"
 						},
 						{
 							"key": "prompt",
-							"value": "Analisis grafik saham atau tren keuangan pada gambar ini.",
+							"value": "Tolong cek bukti transfer sewa kos ini apakah sudah sesuai.",
 							"type": "text",
-							"description": "Prompt for image analysis"
+							"description": "Prompt for image inspection"
 						}
 					]
 				},
@@ -81,7 +99,7 @@
 			"response": []
 		},
 		{
-			"name": "3. Generate from Document",
+			"name": "4. Generate from Document (Perjanjian Sewa / Dokumen)",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -92,11 +110,11 @@
 							"key": "document",
 							"type": "file",
 							"src": [],
-							"description": "Select a financial report or investment document file (e.g. .pdf, .txt)"
+							"description": "Select a PDF or text document"
 						},
 						{
 							"key": "prompt",
-							"value": "Tolong buat ringkasan laporan keuangan dan poin penting investasi dari dokumen ini.",
+							"value": "Tolong buat ringkasan poin penting dari dokumen tata tertib atau perjanjian sewa kos ini.",
 							"type": "text",
 							"description": "Prompt for document summary"
 						}
@@ -111,7 +129,25 @@
 						"generate-from-document"
 					]
 				},
-				"description": "Endpoint for analyzing or summarizing uploaded investment document files."
+				"description": "Endpoint for analyzing or summarizing uploaded document files."
+			},
+			"response": []
+		},
+		{
+			"name": "5. Get Room Inventory",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/rooms",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"rooms"
+					]
+				},
+				"description": "Get complete live inventory, categories, individual rooms, and tenant records."
 			},
 			"response": []
 		}

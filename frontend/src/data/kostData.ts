@@ -1,13 +1,10 @@
 import { RoomItem } from '../types/chat';
 
-const phoneDigits = process.env.NEXT_PUBLIC_OWNER_DIGITS || '6281234567890';
-const phoneFormatted = process.env.NEXT_PUBLIC_OWNER_PHONE || '+6281234567890';
-
 export const OWNER_CONTACT = {
   name: 'Ibu Ros (Pemilik Kos)',
-  phone: phoneFormatted,
-  digits: phoneDigits,
-  whatsappUrl: `https://wa.me/${phoneDigits}`,
+  phone: '+6281266641431',
+  digits: '6281266641431',
+  whatsappUrl: 'https://wa.me/6281266641431',
   address: 'Jl. Tiban Indah No. 18, Sekupang, Kota Batam, Kepulauan Riau',
   operatingHours: '07:00 - 21:00 WIB',
 };

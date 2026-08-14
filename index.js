@@ -5,7 +5,7 @@ const { config, validateEnv } = require('./src/config/env');
 validateEnv();
 
 const server = app.listen(config.port, () => {
-  console.log(`🚀 Invest Buddy Server running in ${config.nodeEnv} mode on http://localhost:${config.port}`);
+  console.log(`🚀 Rosy AI Server running in ${config.nodeEnv} mode on http://localhost:${config.port}`);
 });
 
 // Graceful Shutdown
