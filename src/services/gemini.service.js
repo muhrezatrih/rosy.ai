@@ -1,5 +1,6 @@
 const { GoogleGenAI } = require('@google/genai');
 const { config } = require('../config/env');
+const { getDynamicKosInstruction } = require('../config/kosPrompt');
 
 class GeminiService {
   constructor() {
@@ -24,9 +25,13 @@ class GeminiService {
    */
   async generateText(prompt, modelOverride) {
     const model = modelOverride || config.geminiModel;
+    const systemInstruction = getDynamicKosInstruction();
     const response = await this.ai.models.generateContent({
       model,
       contents: prompt,
+      config: {
+        systemInstruction,
+      },
     });
     return response.text;
   }
@@ -44,17 +49,20 @@ class GeminiService {
     const base64Image = imageBuffer.toString('base64');
     const contents = [];
 
-    if (prompt && prompt.trim()) {
-      contents.push({ text: prompt.trim() });
-    }
+    const defaultPrompt = 'Tolong periksa gambar ini terkait kebutuhan kos (misal: verifikasi KTP penyewa baru, bukti transfer pembayaran kos, atau foto kerusakan fasilitas kamar). Berikan informasi dan saran yang jelas.';
 
+    contents.push({ text: (prompt && prompt.trim()) ? prompt.trim() : defaultPrompt });
     contents.push({
       inlineData: { data: base64Image, mimeType },
     });
 
+    const systemInstruction = getDynamicKosInstruction();
     const response = await this.ai.models.generateContent({
       model,
       contents,
+      config: {
+        systemInstruction,
+      },
     });
     return response.text;
   }
@@ -70,7 +78,7 @@ class GeminiService {
   async generateFromDocument(documentBuffer, mimeType, prompt, modelOverride) {
     const model = modelOverride || config.geminiModel;
     const base64Document = documentBuffer.toString('base64');
-    const defaultPrompt = 'Tolong buat ringkasan dari dokumen berikut.';
+    const defaultPrompt = 'Tolong buat ringkasan dan poin penting dari dokumen kos berikut (misalnya surat perjanjian sewa atau tata tertib).';
     
     const contents = [
       { text: (prompt && prompt.trim()) ? prompt.trim() : defaultPrompt },
@@ -79,9 +87,13 @@ class GeminiService {
       },
     ];
 
+    const systemInstruction = getDynamicKosInstruction();
     const response = await this.ai.models.generateContent({
       model,
       contents,
+      config: {
+        systemInstruction,
+      },
     });
     return response.text;
   }

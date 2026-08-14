@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: #faf8f5;
+    --foreground: #1c1917;
+    --card: #ffffff;
+    --card-foreground: #1c1917;
+    --popover: #ffffff;
+    --popover-foreground: #1c1917;
+    --primary: #d97706;
+    --primary-foreground: #ffffff;
+    --secondary: #f3eee8;
+    --secondary-foreground: #1c1917;
+    --muted: #f5f0eb;
+    --muted-foreground: #78716c;
+    --accent: #fef3c7;
+    --accent-foreground: #78350f;
+    --border: #e7dfd5;
+    --input: #e7dfd5;
+    --ring: #d97706;
+  }
+
+  .dark {
+    --background: #121110;
+    --foreground: #f5f5f4;
+    --card: #1c1a18;
+    --card-foreground: #f5f5f4;
+    --popover: #1c1a18;
+    --popover-foreground: #f5f5f4;
+    --primary: #f59e0b;
+    --primary-foreground: #1c1917;
+    --secondary: #292524;
+    --secondary-foreground: #f5f5f4;
+    --muted: #292524;
+    --muted-foreground: #a8a29e;
+    --accent: #451a03;
+    --accent-foreground: #fef3c7;
+    --border: #292524;
+    --input: #292524;
+    --ring: #f59e0b;
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d6cfc7;
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #44403c;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b5aca3;
+}
+
+/* Hide scrollbar for tabs */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Typing bubble animation */
+@keyframes typingBounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+.typing-dot-1 {
+  animation: typingBounce 1.2s infinite ease-in-out;
+  animation-delay: 0s;
+}
+
+.typing-dot-2 {
+  animation: typingBounce 1.2s infinite ease-in-out;
+  animation-delay: 0.2s;
+}
+
+.typing-dot-3 {
+  animation: typingBounce 1.2s infinite ease-in-out;
+  animation-delay: 0.4s;
+}

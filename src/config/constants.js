@@ -12,7 +12,7 @@ const ALLOWED_DOCUMENT_MIME_TYPES = [
   'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 ];
 
-const DEFAULT_GEMINI_MODEL = 'gemini-2.5-flash';
+const DEFAULT_GEMINI_MODEL = 'gemini-3.5-flash-lite';
 const DEFAULT_MAX_FILE_SIZE_MB = 10;
 
 module.exports = {

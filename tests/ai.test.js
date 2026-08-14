@@ -22,17 +22,36 @@ describe('AI API Endpoints', () => {
     });
 
     it('should return 200 OK and text response when prompt is provided', async () => {
-      geminiService.generateText.mockResolvedValue('Analisis investasi portofolio...');
+      geminiService.generateText.mockResolvedValue('Tersedia Kamar Kecil 600rb (5 unit), Kamar Besar 700rb (6 unit), dan Paviliun 1.5jt. Listrik dan air sudah termasuk.');
 
       const response = await request(app)
         .post('/generate-text')
-        .send({ prompt: 'Berikan analisis investasi' });
+        .send({ prompt: 'Berapa harga kamar kecil dan kamar besar?' });
 
       expect(response.status).toBe(200);
       expect(response.body.success).toBe(true);
-      expect(response.body.result).toBe('Analisis investasi portofolio...');
-      expect(geminiService.generateText).toHaveBeenCalledWith('Berikan analisis investasi');
+      expect(response.body.result).toContain('Kamar Kecil 600rb');
+      expect(response.body.escalation).toBeDefined();
+      expect(response.body.escalation.ownerNumber).toBe('+6281266641431');
+      expect(geminiService.generateText).toHaveBeenCalledWith('Berapa harga kamar kecil dan kamar besar?');
     });
+
+    it('should flag escalation as required when tenant asks for delayed payment / special decisions', async () => {
+      geminiService.generateText.mockResolvedValue(
+        'Untuk penundaan pembayaran sewa setelah 15 hari, saya tidak memiliki wewenang ya Kak. Silakan hubungi langsung Ibu Ros di WhatsApp +6281266641431.'
+      );
+
+      const response = await request(app)
+        .post('/generate-text')
+        .send({ prompt: 'Bolehkah saya bayar sewa telat 15 hari setelah tinggal?' });
+
+      expect(response.status).toBe(200);
+      expect(response.body.success).toBe(true);
+      expect(response.body.escalation.required).toBe(true);
+      expect(response.body.escalation.ownerNumber).toBe('+6281266641431');
+      expect(response.body.escalation.whatsappUrl).toContain('6281266641431');
+    });
+
   });
 
   describe('POST /generate-from-image', () => {

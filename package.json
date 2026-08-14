@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node index.js",
     "dev": "node --watch index.js",
+    "dev:backend": "node --watch index.js",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build:frontend": "npm --prefix frontend run build",
     "test": "jest --detectOpenHandles --forceExit",
     "lint": "eslint ."
   },

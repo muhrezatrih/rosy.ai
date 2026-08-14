@@ -1,152 +1,168 @@
-# 📈 Invest Buddy - Gemini AI API Express Server
+# 🏡 Rosy — AI Kost Concierge & Management System
 
-A production-ready, secure Express.js server providing AI financial analysis, text generation, chart/image inspection, and document summarization powered by Google's official Gemini AI SDK (`@google/genai`).
+Rosy is an AI-powered virtual concierge and room management platform designed for **Kost Ibu Ros** located in Tiban Indah, Sekupang, Batam. 
+
+The system provides 24/7 conversational assistance for prospective and current tenants using Google's Gemini AI, combined with a real-time room availability matrix and tenant billing tracker for the property owner.
 
 ---
 
 ## 🌟 Key Features
 
-- **Text Generation (`POST /generate-text`)**: Generate financial insights, portfolio diversification advice, and investment strategies.
-- **Multimodal Image Analysis (`POST /generate-from-image`)**: Analyze stock charts, candlestick patterns, and financial diagrams uploaded as image files (`.png`, `.jpg`, `.webp`, `.gif`).
-- **Document Summarization (`POST /generate-from-document`)**: Extract key takeaways, financial reports summaries, and risk analyses from uploaded documents (`.pdf`, `.txt`, `.docx`).
-- **Health Check Monitoring (`GET /health`)**: Endpoint returning service status, uptime, timestamp, and version for load balancer and uptime checks.
-- **Security Hardened**: Protected with `helmet` HTTP headers, `cors` cross-origin control, and `express-rate-limit` rate limiting.
-- **Strict File Upload Validation**: Memory storage using `multer` with a 10MB default file size limit and MIME-type white-listing.
-- **Graceful Shutdown**: Traps `SIGTERM` / `SIGINT` for zero-downtime deployments.
-- **Comprehensive Automated Testing**: Unit and integration test coverage powered by Jest & Supertest.
-- **Containerized**: Production-ready multi-stage `Dockerfile` and non-root process user.
+### 1. 💬 AI Virtual Concierge (Rosy)
+* **24/7 Natural Q&A**: Answers questions about room types, unfurnished room terms, inclusive water & electricity, kitchen/parking access, and monthly billing schedules.
+* **Synchronized Knowledge**: Rosy's dynamic prompt is directly tied to the active room inventory database, so it never gives outdated room vacancy counts.
+* **Multimodal Support**:
+  * **Image Inspection**: Analyzes uploaded photos (e.g., proof of payment, maintenance/repair issues, ID cards).
+  * **Document Summarization**: Reads PDF and text documents.
+* **WhatsApp Escalation Routing**: Automatically routes questions needing direct owner confirmation to the owner's WhatsApp number (`+62 812-6664-1431`) with a pre-filled chat link.
+* **Chat History Persistence**: Chat sessions persist locally in `localStorage` across browser refreshes with an option to reset.
+
+### 2. 🛏️ Live Room Inventory & Tenant Management
+* **Room Matrix & Stock Controls**:
+  * **Kamar Kecil (5 units)**: Compact unfurnished rooms @ Rp 600.000 / month.
+  * **Kamar Besar (6 units)**: Spacious unfurnished rooms @ Rp 700.000 / month.
+  * **Paviliun Mandiri (1 unit)**: Private suite with ensuite bathroom & terrace @ Rp 1.500.000 / month.
+* **Real-time Occupancy Matrix**: Quick toggle room status between `Kosong` (Vacant / Ready) and `Terisi` (Occupied).
+* **Tenant Directory & Auto Due Dates**: Records tenant check-in dates and automatically calculates the next monthly billing due date.
+* **Instant Tenant Checkout**: One-click checkout with a dedicated in-app confirmation modal that automatically frees up the room and updates the AI.
+
+### 3. 🔐 Owner / Admin Dashboard
+* **Role-Gated Access**: Discreet login for the property owner via header logo or footer access.
+* **Context-Aware Interface**: Automatically hides tenant WhatsApp contact buttons when logged in as the owner, and reveals a high-visibility logout button.
+* **Secured Authentication**: Protected static authentication for owner management.
+
+---
+
+## 🛠️ Tech Stack
+
+* **Frontend**: Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS, Lucide Icons, `react-markdown`, `remark-gfm`.
+* **Backend**: Express.js, `@google/genai` (Gemini 2.5 Flash), Helmet security headers, CORS, Express Rate Limiter.
+* **Data Storage**: Local JSON file database (`src/data/kost_db.json`) with auto-synchronization and schema fallback.
+* **Testing**: Jest, Supertest.
+
+---
+
+## 📁 Project Structure
+
+```text
+ibukos-ai/
+├── frontend/                     # Next.js 16 App Router Client
+│   ├── src/
+│   │   ├── app/                  # Layout, globals.css, page.tsx
+│   │   ├── components/           # UI Modals, ChatMessage, Admin Dashboard, etc.
+│   │   ├── data/                 # Static kost profile & contact details
+│   │   └── types/                # TypeScript interfaces
+│   └── package.json
+│
+├── src/                          # Express Backend Server
+│   ├── config/                   # Environment & Dynamic Gemini Prompt Builder
+│   ├── controllers/              # AI and Room controllers
+│   ├── data/                     # Local JSON database (kost_db.json)
+│   ├── middleware/               # Rate limiters, uploads, and error handlers
+│   ├── routes/                   # AI, Health, and Room inventory API routes
+│   └── services/                 # Gemini AI Service & KostDb Service
+│
+├── tests/                        # Automated unit & integration tests
+├── .env.example
+├── index.js                      # Backend entrypoint
+└── package.json
+```
 
 ---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
+* **Node.js**: `v18.x` or later (tested on `v22.x`)
+* **npm**: `v9.x` or later
+* **Gemini API Key**: Obtain a key from [Google AI Studio](https://aistudio.google.com/)
 
-- Node.js `v18.x` or higher (Tested on Node.js `v22.x`)
-- npm `v9.x` or higher
-- Gemini API Key from [Google AI Studio](https://aistudio.google.com/)
+### 1. Clone the Repository
+```bash
+git clone https://github.com/muhrezatrih/rosy.ai.git
+cd rosy.ai
+```
 
-### Installation
+### 2. Configure Backend Environment
+Copy the example environment file and add your Gemini API key:
+```bash
+cp .env.example .env
+```
+Edit `.env`:
+```env
+PORT=5001
+NODE_ENV=development
+GEMINI_API_KEY=your_actual_gemini_api_key_here
+GEMINI_MODEL=gemini-2.5-flash
+```
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/muhrezatrih/invest-buddy.git
-   cd invest-buddy
-   ```
+### 3. Install Dependencies
+```bash
+# Install backend dependencies
+npm install
 
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+# Install frontend dependencies
+cd frontend
+npm install
+cd ..
+```
 
-3. **Configure Environment Variables:**
-   Copy the `.env.example` template to `.env`:
-   ```bash
-   cp .env.example .env
-   ```
-   Open `.env` and set your `GEMINI_API_KEY`:
-   ```env
-   PORT=5001
-   NODE_ENV=development
-   GEMINI_API_KEY=your_actual_gemini_api_key_here
-   GEMINI_MODEL=gemini-2.5-flash
-   ```
+### 4. Run Locally
 
----
-
-## 🏃 Running the Application
-
-### Development Mode (Auto-reload)
+**Start Backend (Port 5001):**
 ```bash
 npm run dev
 ```
 
-### Production Mode
+**Start Frontend (Port 3000):**
 ```bash
-npm start
+cd frontend
+npm run dev
 ```
+Open your browser at `http://localhost:3000`.
 
 ---
 
-## 🧪 Testing & Code Quality
+## 🧪 Testing
 
-Run the automated test suite with Jest:
+Run the automated backend test suite:
 ```bash
 npm test
 ```
 
-Run ESLint checks:
+Build the Next.js production bundle:
 ```bash
-npm run lint
+cd frontend
+npm run build
 ```
 
 ---
 
-## 📡 API Endpoints Overview
+## 📡 API Overview
 
-| Method | Endpoint | Description | Content-Type |
-| :--- | :--- | :--- | :--- |
-| `GET` | `/health` | Service health & uptime check | `application/json` |
-| `POST` | `/generate-text` | Generate text from prompt | `application/json` |
-| `POST` | `/generate-from-image` | Analyze stock chart / financial image | `multipart/form-data` |
-| `POST` | `/generate-from-document` | Summarize financial report / document | `multipart/form-data` |
-
-### Sample Request Payloads
-
-#### 1. Text Generation (`POST /generate-text`)
-```json
-{
-  "prompt": "Berikan analisis prinsip dasar investasi diversifikasi portofolio untuk pemula."
-}
-```
-
-#### 2. Image Analysis (`POST /generate-from-image`)
-Form Data fields:
-- `image`: *(File - `.png`, `.jpg`, `.webp`)*
-- `prompt`: *(Text, optional)* `"Analisis tren candlestick dan indikator teknikal pada grafik ini."`
-
-#### 3. Document Analysis (`POST /generate-from-document`)
-Form Data fields:
-- `document`: *(File - `.pdf`, `.txt`, `.docx`)*
-- `prompt`: *(Text, optional)* `"Tolong buat ringkasan laporan keuangan dan poin penting investasi dari dokumen ini."`
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/health` | Server uptime & status check |
+| `POST` | `/generate-text` | Generate AI response with live kost context |
+| `POST` | `/generate-from-image` | Multimodal photo / image analysis |
+| `POST` | `/generate-from-document` | PDF / text document analysis |
+| `GET` | `/rooms` | Get complete inventory, categories, rooms, and tenants |
+| `POST` | `/rooms/update-availability` | Quick-update available units per category |
+| `POST` | `/rooms/toggle` | Toggle individual room status (`Kosong` / `Terisi`) |
+| `POST` | `/tenants` | Register a new tenant with auto next due date |
+| `DELETE`| `/tenants/:id` | Checkout tenant and free up room |
 
 ---
 
-## 📮 Postman Collection
+## 🔒 Security & Best Practices
 
-A pre-configured Postman collection is included in the project: [`invest_buddy.postman_collection.json`](./invest_buddy.postman_collection.json).
-
-Import this file directly into Postman to quickly test all endpoints against your local server (`http://localhost:5001`).
-
----
-
-## 🐳 Docker Deployment
-
-### Build Docker Image
-```bash
-docker build -t invest-buddy:latest .
-```
-
-### Run Docker Container
-```bash
-docker run -d \
-  -p 5001:5001 \
-  -e GEMINI_API_KEY="your_actual_gemini_api_key" \
-  --name invest-buddy \
-  invest-buddy:latest
-```
-
----
-
-## 🔒 Security Best Practices
-
-- **Zero Credential Leaks**: Secrets and `.env` files are ignored via `.gitignore` and `.dockerignore`.
-- **Environment Validation**: Startup fails fast if mandatory variables like `GEMINI_API_KEY` are missing.
-- **Input Sanitization & Limits**: Request body size limits and uploaded file limits prevent Memory Exhaustion / Denial-of-Service attacks.
-- **Non-Root Docker Execution**: Container runs under a low-privilege `node` user.
+* **Rate Limiting**: Protects AI endpoints against spam and denial-of-service.
+* **Sanitized Uploads**: In-memory `multer` storage with strict file-type whitelisting and 10MB limits.
+* **No Secret Leaks**: `.env` and credential artifacts are strictly excluded via `.gitignore`.
+* **Zero AI Hallucination on Vacancies**: AI instructions are dynamically generated on every request using real-time database state.
 
 ---
 
 ## 📄 License
 
-[MIT](LICENSE)
+This project is licensed under the [MIT License](LICENSE).

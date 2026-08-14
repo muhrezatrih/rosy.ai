@@ -1,0 +1,159 @@
+{
+  "summary": {
+    "name": "Kost Ibu Ros",
+    "address": "Jl. Tiban Indah No. 18, Sekupang, Kota Batam",
+    "totalRooms": 12
+  },
+  "categories": [
+    {
+      "id": "kamar-kecil",
+      "name": "Kamar Kecil (Kosongan)",
+      "type": "Kamar Kecil",
+      "priceMonthly": 600000,
+      "priceFormatted": "Rp 600.000",
+      "totalUnits": 5,
+      "availableUnits": 5,
+      "condition": "Kosongan (Unfurnished)",
+      "size": "Ukuran Kompak",
+      "description": "Kamar kosongan ukuran standar & kompak, pas dan leluasa untuk ditata sendiri.",
+      "facilities": [
+        "Kondisi: Kamar Kosongan (Unfurnished)",
+        "Bebas Membawa & Menata Perabot Sendiri",
+        "Ukuran Kamar Standar & Kompak",
+        "Ventilasi Jendela Bagus & Terang",
+        "Akses Kamar Mandi Bersama",
+        "Listrik & Air SUDAH TERMASUK (Gratis)",
+        "Tanpa Wi-Fi (Gunakan kuota/modem pribadi)"
+      ]
+    },
+    {
+      "id": "kamar-besar",
+      "name": "Kamar Besar (Kosongan)",
+      "type": "Kamar Besar",
+      "priceMonthly": 700000,
+      "priceFormatted": "Rp 700.000",
+      "totalUnits": 6,
+      "availableUnits": 6,
+      "condition": "Kosongan (Unfurnished)",
+      "size": "Ukuran Lebih Luas",
+      "description": "Kamar kosongan ukuran lebih luas & lega, ruang gerak leluasa untuk perabot bawaan.",
+      "facilities": [
+        "Kondisi: Kamar Kosongan (Unfurnished)",
+        "Ukuran Kamar Lebih Luas & Ekstra Lega",
+        "Ruang Gerak Leluasa untuk Perabot Pribadi",
+        "Ventilasi Jendela Bagus & Terang",
+        "Akses Kamar Mandi Bersama",
+        "Listrik & Air SUDAH TERMASUK (Gratis)",
+        "Tanpa Wi-Fi (Gunakan kuota/modem pribadi)"
+      ]
+    },
+    {
+      "id": "paviliun",
+      "name": "Paviliun Mandiri (Kosongan)",
+      "type": "Paviliun",
+      "priceMonthly": 1500000,
+      "priceFormatted": "Rp 1.500.000",
+      "totalUnits": 1,
+      "availableUnits": 1,
+      "condition": "Kosongan (Unfurnished)",
+      "size": "Unit Eksklusif",
+      "description": "Unit paviliun mandiri kosongan sangat luas dan privat selayaknya rumah mini.",
+      "facilities": [
+        "Kondisi: Unit Kosongan (Unfurnished)",
+        "Ruang Tamu / Santai Pribadi Sangat Luas",
+        "Kamar Tidur Luas & Mandiri",
+        "Kamar Mandi Dalam Pribadi",
+        "Area Dapur / Teras Sendiri",
+        "Listrik & Air SUDAH TERMASUK (Gratis)",
+        "Tanpa Wi-Fi (Gunakan kuota/modem pribadi)"
+      ]
+    }
+  ],
+  "rooms": [
+    {
+      "number": "101",
+      "categoryId": "kamar-kecil",
+      "name": "Kamar 101",
+      "status": "Kosong",
+      "tenantName": null
+    },
+    {
+      "number": "102",
+      "categoryId": "kamar-kecil",
+      "name": "Kamar 102",
+      "status": "Kosong",
+      "tenantName": null
+    },
+    {
+      "number": "103",
+      "categoryId": "kamar-kecil",
+      "name": "Kamar 103",
+      "status": "Kosong",
+      "tenantName": null
+    },
+    {
+      "number": "104",
+      "categoryId": "kamar-kecil",
+      "name": "Kamar 104",
+      "status": "Kosong",
+      "tenantName": null
+    },
+    {
+      "number": "105",
+      "categoryId": "kamar-kecil",
+      "name": "Kamar 105",
+      "status": "Kosong",
+      "tenantName": null
+    },
+    {
+      "number": "201",
+      "categoryId": "kamar-besar",
+      "name": "Kamar 201",
+      "status": "Kosong",
+      "tenantName": null
+    },
+    {
+      "number": "202",
+      "categoryId": "kamar-besar",
+      "name": "Kamar 202",
+      "status": "Kosong",
+      "tenantName": null
+    },
+    {
+      "number": "203",
+      "categoryId": "kamar-besar",
+      "name": "Kamar 203",
+      "status": "Kosong",
+      "tenantName": null
+    },
+    {
+      "number": "204",
+      "categoryId": "kamar-besar",
+      "name": "Kamar 204",
+      "status": "Kosong",
+      "tenantName": null
+    },
+    {
+      "number": "205",
+      "categoryId": "kamar-besar",
+      "name": "Kamar 205",
+      "status": "Kosong",
+      "tenantName": null
+    },
+    {
+      "number": "206",
+      "categoryId": "kamar-besar",
+      "name": "Kamar 206",
+      "status": "Kosong",
+      "tenantName": null
+    },
+    {
+      "number": "PV-01",
+      "categoryId": "paviliun",
+      "name": "Paviliun 01",
+      "status": "Kosong",
+      "tenantName": null
+    }
+  ],
+  "tenants": []
+}

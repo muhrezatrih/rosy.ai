@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rosy - AI Kost Concierge • Kost Ibu Ros (Tiban, Batam)</title>
+  <meta name="description" content="Rosy adalah AI Virtual Concierge dari Kost Ibu Ros di Tiban Indah, Sekupang, Batam. Menjawab FAQ Kamar Kecil (600rb), Kamar Besar (700rb), Paviliun (1.5jt), listrik & air gratis, dan jatuh tempo pembayaran." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-wrapper">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-brand">
+        <div class="logo-badge">
+          <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1 class="brand-title">Rosy <span style="font-size: 11px; background: #e6f7ff; color: #0050b3; padding: 2px 6px; border-radius: 4px;">AI Concierge</span></h1>
+          <span class="brand-subtitle">Kost Ibu Ros (Tiban Indah, Batam)</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <a href="https://wa.me/6281266641431" target="_blank" class="wa-btn" title="Chat WhatsApp Ibu Ros">
+          💬 WA Ibu Ros (+6281266641431)
+        </a>
+        <div id="status-indicator" class="status-badge checking" title="Checking backend status">
+          <span class="status-dot"></span>
+          <span id="status-text" class="status-text">Menghubungkan...</span>
+        </div>
+        <button id="clear-chat-btn" class="icon-button" title="Bersihkan Obrolan" aria-label="Clear chat">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="chat-container">
+      <!-- Chat Message Display Box -->
+      <div id="chat-box" class="chat-box" role="log" aria-live="polite" aria-label="Conversation messages">
+        <!-- Initial Welcome Message -->
+        <div class="message bot intro-message">
+          <div class="message-avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <div class="message-body">
+            <div class="message-sender">Rosy (AI Assistant)</div>
+            <div class="message-content">
+              <p>👋 Halo Kak! Selamat datang di <strong>Kost Ibu Ros</strong> (Tiban Indah, Batam).</p>
+              <p>Saya adalah <strong>Rosy</strong>, AI Virtual Assistant yang siap membantu memberikan informasi seputar:</p>
+              <ul>
+                <li>🛏️ <strong>Kamar Kecil (5 unit)</strong>: Rp 600.000 / bulan</li>
+                <li>🛏️ <strong>Kamar Besar (6 unit)</strong>: Rp 700.000 / bulan</li>
+                <li>🏡 <strong>Paviliun Mandiri (1 unit)</strong>: Rp 1.500.000 / bulan</li>
+                <li>💡 <strong>Listrik & Air Gratis</strong> (Sudah termasuk sewa)</li>
+                <li>📅 <strong>Jatuh Tempo</strong> sesuai tanggal awal masuk</li>
+                <li>📶 <strong>Tanpa Wi-Fi</strong> (penyewa gunakan kuota/modem pribadi)</li>
+              </ul>
+            </div>
+            <div class="message-time">Baru saja</div>
+          </div>
+        </div>
+
+        <!-- Quick Prompts Section -->
+        <div id="quick-prompts" class="quick-prompts-container">
+          <div class="quick-prompts-label">✨ Pertanyaan Populer:</div>
+          <div class="quick-prompts-grid">
+            <button class="prompt-chip" data-prompt="Berapa saja tipe dan harga sewa kamar di Kost Ibu Ros Tiban?">
+              🛏️ Tipe & Harga Kamar (600rb - 1.5jt)
+            </button>
+            <button class="prompt-chip" data-prompt="Bagaimana sistem jatuh tempo pembayaran sewa jika saya masuk tanggal 14 Agustus?">
+              📅 Jatuh Tempo Sesuai Tanggal Masuk
+            </button>
+            <button class="prompt-chip" data-prompt="Apakah biaya sewa sudah termasuk listrik dan air? Apakah ada Wi-Fi?">
+              💡 Listrik, Air & Info Wi-Fi
+            </button>
+            <button class="prompt-chip" data-prompt="Bolehkah saya bayar sewa telat 15 hari setelah tinggal?">
+              🚨 Izin Bayar Telat (WhatsApp Ibu Ros)
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Attachment Preview Tray -->
+      <div id="attachment-tray" class="attachment-tray hidden">
+        <div class="attachment-preview-card">
+          <div id="attachment-icon" class="attachment-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+              <polyline points="13 2 13 9 20 9"></polyline>
+            </svg>
+          </div>
+          <img id="attachment-img-preview" class="attachment-img-preview hidden" alt="Uploaded file preview" />
+          <div class="attachment-details">
+            <span id="attachment-name" class="attachment-name">document.pdf</span>
+            <span id="attachment-size" class="attachment-size">0 KB</span>
+          </div>
+          <button type="button" id="remove-attachment-btn" class="remove-attachment-btn" title="Remove attachment" aria-label="Remove attachment">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Chat Input Form -->
+      <form id="chat-form" class="chat-input-form">
+        <!-- Hidden file input -->
+        <input 
+          type="file" 
+          id="file-input" 
+          class="visually-hidden" 
+          accept="image/png,image/jpeg,image/webp,image/gif,application/pdf,text/plain" 
+        />
+
+        <!-- Attachment Trigger Button -->
+        <button 
+          type="button" 
+          id="attach-btn" 
+          class="attach-btn" 
+          title="Kirim Foto KTP / Bukti Transfer / Kerusakan Kamar"
+          aria-label="Attach File"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
+          </svg>
+        </button>
+
+        <!-- Text Input -->
+        <div class="input-wrapper">
+          <textarea 
+            id="user-input" 
+            rows="1" 
+            placeholder="Tanyakan tipe kamar, aturan jatuh tempo, atau lampirkan foto..." 
+            autocomplete="off" 
+            required
+            aria-label="Pesan Anda"
+          ></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="send-btn" class="send-btn" aria-label="Kirim pesan">
+          <span class="send-text">Kirim</span>
+          <svg class="send-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </form>
+    </main>
+
+    <!-- Footer Disclaimer -->
+    <footer class="app-footer">
+      <p>💡 <em>Rosy AI Concierge • Kost Ibu Ros (Tiban Indah, Batam) • WhatsApp: <strong>+6281266641431</strong></em></p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
