@@ -134,36 +134,6 @@ export default function KostApp() {
     return () => clearInterval(interval);
   }, []);
 
-  // Handle mobile virtual keyboard: prevent white gap on iOS Safari/Chrome
-  useEffect(() => {
-    const vv = window.visualViewport;
-    if (!vv) return;
-
-    const handleResize = () => {
-      // Calculate the offset between the full window height and the visual viewport
-      // This offset equals the virtual keyboard height
-      const offsetBottom = window.innerHeight - vv.height - vv.offsetTop;
-      document.documentElement.style.setProperty(
-        '--keyboard-offset',
-        `${Math.max(0, offsetBottom)}px`
-      );
-      // On iOS, scrollIntoView the active element to avoid white gap
-      if (offsetBottom > 0 && document.activeElement) {
-        requestAnimationFrame(() => {
-          document.activeElement?.scrollIntoView({ block: 'nearest', behavior: 'instant' });
-        });
-      }
-    };
-
-    vv.addEventListener('resize', handleResize);
-    vv.addEventListener('scroll', handleResize);
-    return () => {
-      vv.removeEventListener('resize', handleResize);
-      vv.removeEventListener('scroll', handleResize);
-      document.documentElement.style.removeProperty('--keyboard-offset');
-    };
-  }, []);
-
   // Handle file selection
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -356,7 +326,7 @@ export default function KostApp() {
   };
 
   return (
-    <div className="flex flex-col min-h-dvh bg-[#faf8f5] dark:bg-[#121110]">
+    <div className="fixed inset-0 flex flex-col h-full h-[100dvh] w-full bg-[#faf8f5] dark:bg-[#121110] overflow-hidden">
       {/* Header with Role-Based Controls */}
       <Header
         onOpenRooms={() => setIsRoomModalOpen(true)}
@@ -370,9 +340,9 @@ export default function KostApp() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-4 sm:py-6 flex flex-col justify-between">
-        {/* Chat Feed */}
-        <div className="flex-1 space-y-4">
+      <main className="flex-1 flex flex-col min-h-0 max-w-4xl w-full mx-auto overflow-hidden">
+        {/* Scrollable Message Feed Container */}
+        <div className="flex-1 overflow-y-auto min-h-0 px-4 sm:px-6 py-4 space-y-4 overscroll-contain">
           {/* Top Info Banner - Clean Modern Card */}
           <div className="p-3.5 sm:p-4 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shadow-xs flex items-center justify-between gap-4">
             <div className="flex items-center gap-3">
@@ -442,8 +412,8 @@ export default function KostApp() {
           </div>
         </div>
 
-        {/* Input Bar Section */}
-        <div className="sticky bottom-0 z-20 pt-4 pb-2 bg-gradient-to-t from-[#faf8f5] via-[#faf8f5]/95 dark:from-[#121110] dark:via-[#121110]/95">
+        {/* Fixed Bottom Input Area */}
+        <div className="shrink-0 px-4 sm:px-6 pt-2 pb-3 bg-[#faf8f5] dark:bg-[#121110] border-t border-zinc-200/50 dark:border-zinc-800/50">
           {/* Attachment Preview if any */}
           <AttachmentPreview
             attachment={attachment}

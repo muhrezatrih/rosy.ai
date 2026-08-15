@@ -14,6 +14,10 @@ export const viewport: Viewport = {
   maximumScale: 1,
   userScalable: false,
   interactiveWidget: 'resizes-content',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#faf8f5' },
+    { media: '(prefers-color-scheme: dark)', color: '#121110' },
+  ],
 };
 
 export const metadata: Metadata = {
@@ -44,8 +48,12 @@ export default function RootLayout({
     <html lang="id" className={`${jakartaSans.variable} bg-[#faf8f5] dark:bg-[#121110]`}>
       <head>
         <link rel="icon" href="/icon.png" sizes="any" />
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#faf8f5" />
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121110" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
-      <body className="font-sans antialiased bg-[#faf8f5] dark:bg-[#121110] text-zinc-900 dark:text-zinc-100 flex flex-col min-h-dvh">
+      <body className="font-sans antialiased bg-[#faf8f5] dark:bg-[#121110] text-zinc-900 dark:text-zinc-100 h-full overflow-hidden">
         {children}
       </body>
     </html>
